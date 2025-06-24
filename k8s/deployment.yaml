@@ -28,4 +28,6 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-  type: LoadBalancer
+      nodePort: 30080  # Optional: specify or let Kubernetes assign one
+  type: NodePort
+
