@@ -33,10 +33,13 @@ jobs:
       run: |
         docker push ghcr.io/${{ github.repository_owner }}/html-site:latest
 
-    - name: Set up Kubeconfig
+    - name: Configure kubectl manually
       run: |
-        mkdir -p ~/.kube
-        echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
+        kubectl config set-cluster jelastic --server=${{ secrets.K8S_API_URL }} --insecure-skip-tls-verify=true
+        kubectl config set-context jelastic --cluster=jelastic
+        kubectl config set-credentials user --token=${{ secrets.K8S_TOKEN }}
+        kubectl config set-context jelastic --user=user
+        kubectl config use-context jelastic
 
     - name: Deploy to Kubernetes
       run: |
