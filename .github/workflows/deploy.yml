@@ -35,7 +35,7 @@ jobs:
 
     - name: Configure kubectl manually
       run: |
-        kubectl config set-cluster jelastic --server=${{ secrets.K8S_API_URL }} --insecure-skip-tls-verify=true
+        kubectl config set-cluster jelastic --server=https://env-3879268.ktm.yetiappcloud.com/api
         kubectl config set-context jelastic --cluster=jelastic
         kubectl config set-credentials user --token=${{ secrets.K8S_TOKEN }}
         kubectl config set-context jelastic --user=user
