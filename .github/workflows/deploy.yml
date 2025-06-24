@@ -35,7 +35,7 @@ jobs:
 
     - name: Configure kubectl manually
       run: |
-        kubectl config set-cluster jelastic --server=env-3879268.ktm.yetiappcloud.com/api
+        kubectl config set-cluster jelastic --server=https://env-3879268.ktm.yetiappcloud.com/api
         kubectl config set-context jelastic --cluster=jelastic
         kubectl config set-credentials user --token=${{ secrets.K8S_TOKEN }}
         kubectl config set-context jelastic --user=user
