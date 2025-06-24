@@ -38,6 +38,10 @@ jobs:
         mkdir -p ~/.kube
         echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
 
+    - name: Cleanup Kubernetes
+      run: |
+        kubectl delete -f k8s/deployment.yaml
+
     - name: Deploy to Kubernetes
       run: |
         kubectl apply -f k8s/deployment.yaml
