@@ -41,6 +41,11 @@ jobs:
         kubectl config set-context jelastic --user=user
         kubectl config use-context jelastic
 
+    - name: Check cluster access
+      run: |
+        kubectl get namespaces
+
+
     - name: Deploy to Kubernetes
       run: |
         kubectl apply -f k8s/deployment.yaml
